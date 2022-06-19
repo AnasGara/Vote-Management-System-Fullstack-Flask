@@ -1,0 +1,103 @@
+{% extends 'layouts/admin.html' %}
+{% block body %}
+<div class="content">
+ {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+
+                                    {% for message in messages %}
+
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>Success!</strong> {{ message }}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    {% endfor %}
+
+                                  {% endif %}
+                                {% endwith %}
+          <div class="container-fluid">
+
+            <div class="section">
+              <div class="row">
+                <div class="col-6 col-md-3"></div>
+                <div class="col-6 col-md-6">
+                  <br /><br />
+                  <h1
+                    style="
+                      text-align: center;
+                      font-weight: 400;
+                      color: rgb(2, 23, 5);
+                    "
+                  >
+                   All Competition
+                  </h1>
+
+                </div>
+                <div class="col-6 col-md-3"></div>
+              </div>
+              <br />
+            </div>
+
+
+            <div class="section">
+              <div class="row">
+                <div class="col-6 col-md-2"></div>
+                <div class="col-6 col-md-8">
+
+
+                                          <!-- boucli for hne-->
+                    {% for comp in comps %}
+                <div class="card"style="background-color: #326f59">
+                  <div class="card-header card-header-success" style="background-color: #B7E4C7">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h4 class="card-title "> <b>{{ comp.title }}</b> </h4>
+                             <div class="container">
+                                 <div class="row">
+                                     <div class="col mt-2"><strong>Created by:</strong> {{ comp.userCompetitions.first_name }} {{ comp.userCompetitions.last_name }}
+                                     </div>
+
+
+
+                                     <div class="row-cols-md-7 mb-3">
+                                      <a class="btn btn-dark text-white" href="/compdetail/{{ comp.id }}"  style="margin: 2px;" >Details</a>
+                                      <a  class="btn btn-danger text-white" href="/delete_comp/{{ comp.id }}/{{ "comps" }}"  style="margin:2px;">Delete</a>
+
+
+                                    </div>
+                                 </div>
+                             </div>
+                          </div>
+
+
+                      </div>
+                  </div>
+
+                       <div class="card-body">  </div>
+
+              </div>
+                    {% endfor %}
+
+
+
+                </h2>
+                </div>
+                <div class="col-6 col-md-2"></div>
+              </div>
+              <br />
+            </div>
+
+
+          </div>
+
+          <!-- what you looking to do-->
+          <br /><br />
+                    <br />
+
+
+
+          <!-- li ta7ti tsakkar el content sakarha ekhir el page-->
+        </div>
+{% endblock %}

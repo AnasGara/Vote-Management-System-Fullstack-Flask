@@ -1,0 +1,46 @@
+<div class="sidebar"   onclick="window.location='home.html'" data-image="/static/admin/img/comp.png">
+        <!--
+        coolers li staamalt'hom https://coolors.co/palette/d8f3dc-b7e4c7-95d5b2-74c69d-52b788-40916c-2d6a4f-1b4332-081c15
+badal mel image-data tag
+    -->
+        <div class="sidebar-wrapper">
+          <div class="logo">
+            <a href="{{ url_for('admin_home')}}" class="simple-text">
+              <img src="/static/admin/img/logoEntet.png" height="50px" />
+            </a>
+          </div>
+          <ul class="nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('admin_home') }}">
+                <i class="nc-icon nc-icon nc-tv-2"></i>
+                <p>Home</p>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url_for('users') }}">
+                <i class="nc-icon nc-circle-09"></i>
+                <p>Manage users</p>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url_for('comps') }}">
+                <i class="nc-icon nc-paper-2"></i>
+                <p>Manage competitions</p>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url_for('valid_comp') }}">
+                <i class="nc-icon nc-check-2"></i>
+                <p>Validate competitions</p>
+              </a>
+            </li>
+
+            <li class="nav-item active active-pro">
+              <a class="nav-link active" href="/">
+                <i class="nc-icon nc-controller-modern"></i>
+                <p>Go to Vote.ly</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>

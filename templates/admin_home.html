@@ -1,0 +1,160 @@
+{% extends 'layouts/admin.html' %}
+{% block body %}
+
+
+
+
+        <!-- End Navbar -->
+        <!-- Main Content -->
+        <div class="content">
+          <div class="container-fluid">
+            <div class="section">
+              <div class="row">
+                <div class="col-6 col-md-2"></div>
+                <div class="col-6 col-md-8">
+                  <br /><br />
+                  <h1
+                    style="
+                      text-align: center;
+                      font-weight: 400;
+                      color: rgb(2, 23, 5);
+                    "
+                  >
+                    Hello and welcome back Admin
+                  </h1>
+                  <br /><br />
+                  <h2
+                    style="
+                      text-align: center;
+                      font-weight: 300;
+                      color: rgb(2, 23, 5);
+                    "
+                  >
+                    Here's some statistics of Vote.ly
+                  </h2>
+                </div>
+                <div class="col-6 col-md-2"></div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-6 col-md-3"></div>
+                <div class="col-6 col-md-3">
+                  <div class="card card-stats">
+                    <div
+                      class="card-header card-header-success card-header-icon"
+                      style="background-color: #d8f3dc"
+                    >
+                      <div class="card-icon">
+                        <i class="nc-icon nc-icon nc-chart-bar-32"></i>
+
+                      </div>
+                      <p class="card-category" style="color: black">
+                        Number of created competitions
+                      </p>
+                      <a class="nav-link" routerLink="/table-list">
+                        <h4 class="card-title"><b>{{ count_comps }}</b> competitions</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="card card-stats">
+                    <div
+                      class="card-header card-header-success card-header-icon"
+                      style="background-color: #d8f3dc"
+                    >
+                      <div class="card-icon">
+                        <i class="nc-icon nc-icon nc-chart-pie-35"></i>
+                      </div>
+                      <p class="card-category" style="color: black">
+                        Number of registred users
+                      </p>
+                      <a class="nav-link" routerLink="/table-list">
+                        <h4 class="card-title"><b>{{ count_users }}</b> users</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- what you looking to do-->
+          <br /><br />
+          <div class="container-fluid">
+            <div class="section">
+              <div class="row">
+                <div class="col-6 col-md-3" style="text-align: center"></div>
+                <div class="col-6 col-md-6" style="text-align: center">
+                  <h2
+                    style="
+                      text-align: center;
+                      font-weight: 300;
+                      color: rgb(2, 23, 5);
+                    "
+                  >
+                    What are you looking to do today?
+                  </h2>
+                </div>
+                <div class="col-6 col-md-3" style="text-align: center"></div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="container-fluid">
+            <div class="section">
+              <div class="row">
+                <div
+                  class="col-6 col-md-4"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+
+                  <div class="box-1">
+                    <a style="color: white;text-decoration: none" href="{{ url_for('comps') }}" class="btnn btn-one">
+                      <span>Manage competitions</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="col-6 col-md-4"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div class="box-1">
+                    <a style="color: white;text-decoration: none" href=" {{ url_for('valid_comp') }}" class="btnn btn-one">
+                      <span>Validate competition</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="col-6 col-md-4"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div class="box-1">
+                    <a style="color: white;text-decoration: none" href="{{ url_for('users') }}" class="btnn btn-one">
+                      <span>Manage users</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+{% endblock %}

@@ -1,0 +1,228 @@
+{% extends 'layouts/default.html' %}
+{% block body %}
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  <!-- Button trigger modal -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+
+.modal-confirm {
+	color: #636363;
+	width: 400px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -2px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	border: none;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+	color: #999;
+}
+.modal-confirm .icon-box {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 9;
+	text-align: center;
+	border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+	color: #f15e5e;
+	font-size: 46px;
+	display: inline-block;
+	margin-top: 13px;
+}
+.modal-confirm .btn, .modal-confirm .btn:active {
+	color: #fff;
+	border-radius: 4px;
+	background: #60c7c1;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	min-width: 120px;
+	border: none;
+	min-height: 40px;
+	border-radius: 3px;
+	margin: 0 5px;
+}
+.modal-confirm .btn-secondary {
+	background: #c1c1c1;
+}
+.modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+	background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+</style>
+
+    <!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>
+				<h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Do you really want to delete these competition? This process cannot be undone.</p>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<button  class="btn btn-danger" type="submit" form="my-form">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<div class="tm-welcome-container tm-fixed-header tm-fixed-header-3">
+				<div class="text-center">
+					<h1 class=" text-white ">Manage your competitions.</h1>
+				</div>
+            </div>
+
+            <div id="tm-fixed-header-bg" style="width: 100%"></div> <!-- Header image -->
+		</div>
+
+<main>
+ {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+
+                                    {% for message in messages %}
+                                    <div class="container-sm mt-5">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>Success!</strong> {{ message }}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                  {% endif %}
+                                {% endwith %}
+{% if not res %}
+<h1 class="text-center mt-3">You have no competition yet </h1>
+{% endif %}
+				<div class="mx-auto tm-content-container mt-4 px-3">
+
+					<div class="row tm-catalog-item-list mb-4">
+
+                         {% for re in res %}
+		                <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
+		                    <div class="tm-bg-gray p-4">
+
+                                {% if re.valid == 0 %}
+                                 <a  href="#" class="tm-bg-white-red px-5 mb-4 d-inline-block tm-text-danger tm-likes-box tm-liked" style="margin-left: 12%;text-decoration: none; pointer-events: none;
+   cursor: default;">
+									<i class="fas fa-calendar-times mr-3 tm-liked-icon " ></i>
+
+									<span id="tm-likes-count" >Invalid</span>
+								</a>
+
+                            {% elif re.closed == 0 %}
+                                <a href="#" class="tm-bg-white-green px-5 mb-4 d-inline-block tm-text-green tm-likes-box tm-liked" style="margin-left: 12%;text-decoration: none; pointer-events: none;
+   cursor: default;">
+									<i class="fas fa-bullhorn mr-3 tm-liked-icon"></i>
+									<i class="far fa-user mr-3 tm-not-liked-icon"></i>
+									<span id="tm-likes-count">In progress</span>
+								</a>
+                                {% elif re.closed == 1 %}
+                                  <a href="#" class="tm-bg-white-yellow px-5 mb-4 d-inline-block tm-text-info tm-likes-box tm-liked" style="margin-left: 12%;text-decoration: none; pointer-events: none;
+   cursor: default;">
+									<i class="fas fa-calendar-times mr-3 tm-liked-icon " ></i>
+
+									<span id="tm-likes-count">Closed</span>
+								</a>
+                                {% endif %}
+
+		                       <img src="/static/uploads/img/{{ re.media }}" alt="Image" class="img-fluid tm-catalog-item-img">
+		                        <h3 class="tm-text-primary mb-3">{{ re.title }}</h3>
+
+
+
+		                        <a href="#" class="tm-bg-white px-5 mb-4 d-inline-block tm-text-primary tm-likes-box tm-liked" style="margin-left: 12%;text-decoration: none; pointer-events: none;
+   cursor: default;">
+									<i class="fas fa-user mr-3 tm-liked-icon"></i>
+									<i class="far fa-user mr-3 tm-not-liked-icon"></i>
+									<span id="tm-likes-count">{{re.participants | length }} Participants</span>
+								</a>
+
+                                <br>
+{#                             <button class="btn-info">In progress</button>#}
+{#                                <button class="btn-dark">Closed</button>#}
+{#                                <button class="btn-danger">Invalid</button>#}         <form id="my-form" action="/delete_comp/{{ re.id }}/{{ "user_comp" }}">
+                                <div style="display: flex;justify-content: space-between">
+
+      <a type="button" class="btn-ay btn-danger rounded-0" style="text-decoration: none" href="/close/{{ re.id }}"><span>Close</span></a>
+                                  <button  type="button" class="btn-ay btn-primary rounded-0 " href="#myModal" class="trigger-btn" data-toggle="modal" ><span>Delete</span></button>
+
+                                </div>
+ </form>
+		                    </div>
+		                </div>
+                        {% endfor %}
+
+		            </div>
+
+				</div>
+
+				<div class="parallax-window" data-parallax="scroll" data-image-src="/static/img/sl.png"></div>
+			</div>
+		</main>
+    <script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+    </script>
+{% endblock %}

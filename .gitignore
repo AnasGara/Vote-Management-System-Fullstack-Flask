@@ -1,0 +1,12 @@
+.idea
+venv
+.env
+__pycache__
+.DS_Store
+.envrc
+.envrc.local
+.envrc.local.old
+.envrc.old
+.envrc.old.local
+.envrc.old.local.old
+static

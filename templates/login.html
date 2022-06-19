@@ -1,0 +1,37 @@
+
+{% extends 'layouts/login_default.html' %}
+{% block body %}
+<!-- partial:index.partial.html -->
+<div id="bg"></div>
+  {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+
+                                    {% for message in messages %}
+
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                      <strong>Error!</strong> {{ message }}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    {% endfor %}
+
+                                  {% endif %}
+    {% endwith %}
+<form method="POST" action="{{ url_for('login') }}">
+  <div class="form-field">
+    <input type="email" placeholder="Email" name="email" required/>
+  </div>
+  
+  <div class="form-field password">
+    <input type="password" placeholder="Password" name="password" required/>
+  </div>
+  
+  <div class="form-field">
+    <button class="btn " type="submit">Log in</button>
+     <a class="btn" style="background-color:coral " href="/signup">Signup</a>
+  </div>
+</form>
+<!-- partial -->
+{% endblock %}

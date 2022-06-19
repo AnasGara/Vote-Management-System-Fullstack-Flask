@@ -1,0 +1,276 @@
+
+{% extends 'layouts/default.html' %}
+{% block body %}
+
+
+    	<div class="tm-welcome-container tm-fixed-header tm-fixed-header-2" style="background-image: url('/static/uploads/img/{{ comp.media }}')" id="t">
+				<div class="text-center"> <br>  <br>
+					<h1 class="tm-bg-black ml-auto mr-auto text-white">{{ comp.title }}.</h1>
+				</div>
+            </div>
+
+            <div id="tm-fixed-header-bg"></div> <!-- Header image -->
+		</div>
+<div class="container-fluid">
+
+{% if comp.closed == 1 %}
+				<div class="mx-auto tm-content-container mt-4 px-3 mb-3" style="zoom: 70%">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-page-title mb-5 tm-text-primary">Winners</h2>
+                        </div>
+                    </div>
+					<div class="row" style="margin-bottom: -70px">
+		                <div class="col-lg-4 mb-5 pt-3" >
+		                    <div class="media tm-testimonial">
+                                 <div class="embed-responsive embed-responsive-16by9" style="border-radius: 25px; box-shadow: silver 0px 10px, silver 0px 15px, silver 0px 20px, silver 0px 25px, silver 0px 30px;">
+
+
+                                            <iframe class="embed-responsive-item" src="/static/uploads/vid/{{ silver.part_comp[silvervid].video }}" allowfullscreen sandbox></iframe>
+
+                                        </div>
+{#                                <p class="media-body pt-3 tm-testimonial-text">#}
+{#                                    Vestibulum non lectus id lacus aliquet porttitor in non nulla. Aenean urna diam, finibys id lorem nec, feugiat convallis dolor. Integer aliquam, eros eget rutrum iaculis.#}
+{#                                </p>#}
+                            </div>
+		                </div>
+		                <div class="col-lg-4 mb-5 pt-3" style="margin-top: -60px">
+                              <div class="media tm-testimonial">
+                               <div class="embed-responsive embed-responsive-16by9" style="border-radius: 25px; ;box-shadow: gold 0px 10px, gold 0px 15px, gold 0px 20px, gold 0px 25px, gold 0px 30px;">
+
+
+                                            <iframe class="embed-responsive-item" src="/static/uploads/vid/{{ gold.part_comp[goldvid].video }}" allowfullscreen sandbox></iframe>
+
+                                        </div>
+{#                              <p class="media-body pt-3 tm-testimonial-text">#}
+{#                                Maecenas et libero in eros laoreet finibus sed vitae diam. Etiam consetetur, nunc sed pretium elementum, diam erat fringilla tortor, placerat condimentum.#}
+{#                              </p>#}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-5 pt-3" style="margin-top: 20px">
+                            <div class="media tm-testimonial">
+                              <div class="embed-responsive embed-responsive-16by9" style="  border-radius: 25px;box-shadow: saddlebrown 0px 10px, saddlebrown 0px 15px, saddlebrown 0px 20px, saddlebrown 0px 30px, saddlebrown 0px 35px;">
+
+
+                                            <iframe class="embed-responsive-item" src="/static/uploads/vid/{{ bronze.part_comp[bronzevid].video }}" allowfullscreen sandbox></iframe>
+
+                                        </div>
+{#                              <p class="media-body pt-3 tm-testimonial-text">#}
+{#                                Aliquam tristique ut magna sit amet tincidunt. Sed tempor tellus nulla, molestie luctus lectus tincidunt id. Cras duismod leo a urna placerat, vel blandit turpis fermentum.#}
+{#                              </p>#}
+                            </div>
+                        </div>
+
+		            </div>
+                      <div class="row" style="margin-bottom: -60px">
+		                <div class="col-lg-4 mb-5 pt-3 ">
+		                    <div class="media tm-testimonial" >
+                                <h2 style="margin-right: auto;margin-left: auto;margin-top: 30px">{{ silver.first_name }}   {{ silver.part_comp[0].id }}</h2>
+
+                            </div>
+		                </div>
+		                <div class="col-lg-4 mb-5 pt-3" >
+                              <div class="media tm-testimonial">
+                             <h2 style="margin-right: auto;margin-left: auto;">{{ gold.first_name }}</h2>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-5 pt-3" >
+                            <div class="media tm-testimonial">
+                             <h2 style="margin-right: auto;margin-left: auto;margin-top: 40px">{{ bronze.first_name }}</h2>
+
+                            </div>
+                        </div>
+
+		            </div>
+                    <div class="row">
+                    <img style="margin-left: auto;margin-right: auto"width="1300" height="200"  src="/static/img/pdwinner.png">
+                    </div>
+
+				</div>
+
+<div class="parallax-window parallax-window-2" data-parallax="scroll" data-image-src="/static/img/w.png"></div>
+{% endif %}
+			<div class="mx-auto tm-content-container">
+				<main>
+{#					<div class="row mb-5 pb-4">#}
+{#						<div class="col-12">#}
+{#							<!-- Video player 1422x800 -->#}
+{#							<video width="1422" height="800" controls autoplay>#}
+{#							  <source src="video/wheat-field.mp4" type="video/mp4">#}
+{#							Your browser does not support the video tag.#}
+{#							</video>#}
+{#						</div>#}
+{#					</div>#}
+					<div class="row mb-5 pb-5">
+						<div class="col-xl-8 col-lg-7">
+							<!-- Video description -->
+							<div class="tm-video-description-box">
+                                <h2 class="mb-5 tm-video-title"><span style="color:#3399CC;">Competition Title :</span><span style="font-weight: bold">{{ comp.title}}</span></h2>
+	                                <h2 style="color:#3399CC ">About the competition :</h2>
+                                <div >{{ comp.desc }}</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-5">
+							<!-- Share box -->
+							<div class="tm-bg-gray tm-share-box">
+                              {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+
+                                    {% for message in messages %}
+                                        {% if  success  %}
+                                            <div class="alert alert-success">{{ message }}</div>
+                                               {% else %}
+                                                  <div class="alert alert-danger">{{ message }}</div>
+
+
+                                            {% endif %}
+                                    {% endfor %}
+
+                                  {% endif %}
+                                {% endwith %}
+
+								<p class="mb-4">Created by: <a href="https://templatemo.com" class="tm-text-link">{{ comp.userCompetitions.first_name }}</a></p>
+								<a href="#" class="tm-bg-white px-5 mb-4 d-inline-block tm-text-primary tm-likes-box tm-liked">
+									<i class="fas fa-user mr-3 tm-liked-icon"></i>
+									<i class="far fa-user mr-3 tm-not-liked-icon"></i>
+									<span id="tm-likes-count">{{comp.participants | length }} Participants</span>
+								</a>
+                            	<p class="mb-4">Closes on: <a href="https://templatemo.com" class="tm-text-link text-danger" >{{ comp.limit_date }} </a></p>
+								<div>
+                                {% block content %}
+                                {% if not g.user %}
+                                    <a href="{{ url_for('login') }}" class="btn btn-primary p-0 tm-btn-animate tm-btn-download tm-icon-download" ><span>Participate</span></a>
+                                    {% else %}
+                                {% if partcip %}
+									<button class="btn btn-primary p-0 tm-btn-animate tm-btn-download tm-icon-download" data-toggle="modal" data-target="#exampleModal" data-whatever="@mfsdfsdo"><span>Participate</span></button>
+                                {% endif %}
+                                    {% endif %}
+
+
+
+                                {% endblock content %}
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row pt-4 pb-5">
+						<div class="col-12">
+
+							<h2 class="mb-5 tm-text-primary ">Candidates Videos for You </h2>
+							<div class="col tm-catalog-item-list" >
+                                  {% for part in comp.participants %}
+		                        <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item " style="margin-left: auto;margin-right: auto">
+		                            <div class="position-relative tm-thumbnail-container">
+{#		                                <img src="img/tn-01.jpg" alt="Image" class="img-fluid tm-catalog-item-img">#}
+
+
+
+                                        <div class="embed-responsive embed-responsive-16by9" style="border: 10px solid #3399CC;">
+
+
+                                            <iframe class="embed-responsive-item" src="/static/uploads/vid/{{ part.video }}" allowfullscreen sandbox></iframe>
+
+                                        </div>
+
+{#		                                <a href="video-page.html" class="position-absolute tm-img-overlay">#}
+{#		                                    <i class="fas fa-play tm-overlay-icon"></i>#}
+{#		                                </a>#}
+		                            </div>
+                                    <form action="/vote" method="post">
+                                        <input type="text" value="{{ comp.id }}" name="comp_id" hidden>
+                                        <input type="text" value="{{ part.user.id }}" name="user_benf" hidden>
+		                            <div class="row p-3">
+                                         <a href="#" class="tm-bg-white px-5 mb-2 d-inline-block tm-text-primary tm-likes-box tm-liked" style="text-decoration: none; pointer-events: none;
+   cursor: default;">
+									<i class="fas fa-user mr-3 tm-liked-icon"></i>
+									<i class="far fa-user mr-3 tm-not-liked-icon"></i>
+									<span id="tm-likes-count">{{ part.user.first_name }}</span>
+								</a>
+                                {% if not g.user %}
+                                    <a href="{{ url_for('login') }}" class="btn-ay btn-primary  rounded-circle text-white ml-auto mr-0" >Vote</a>
+                                    {% else %}
+                                {% if vot %}
+									 <button type="submit" class="btn-ay btn-primary  rounded-circle text-white ml-auto mr-0" >Vote</button>
+                                {% endif %}
+                                    {% endif %}
+
+
+		                            </div>
+                                        </form>
+		                        </div>
+                                  {% endfor %}
+		                    </div>
+
+
+
+
+
+
+
+
+				</main>
+
+
+
+
+			</div> <!-- .tm-content-container -->
+		</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New participation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+          <form method="post" action="/create_part" enctype='multipart/form-data'>
+      <div class="modal-body">
+             <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tell us about yourself !!:</label>
+            <input type="text" class="form-control" name="desc" required>
+          </div>
+          <div class="form-group">
+              <input type="text" name="comp" value="{{ comp.id }}" hidden>
+            <label for="message-text" class="col-form-label">Video:</label>
+            <input type="file" name="media" class="filestyle" data-classButton="btn" required >
+          </div>
+
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Join</button>
+      </div>
+              </form>
+    </div>
+  </div>
+</div>
+<script>
+     $(document).ready(function() {
+            $("button").click(function() {
+                $(document).scrollY($(document).height());
+            });
+        });
+        {#const a = document.getElementById('t')#}
+        {#a.style.backgroundImage="url('/static/uploads/thecoice.jpg')";#}
+    	$(document).ready(function() {
+    		$('.tm-likes-box').click(function(e) {
+    			e.preventDefault();
+    			$(this).toggleClass('tm-liked');
+
+    			if($(this).hasClass('tm-liked')) {
+    				$('#tm-likes-count').html('486 likes');
+    			} else {
+    				$('#tm-likes-count').html('485 likes');
+    			}
+    		});
+    	});
+
+    </script>
+{% endblock %}

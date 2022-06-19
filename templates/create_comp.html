@@ -1,0 +1,108 @@
+
+{% extends 'layouts/default.html' %}
+{% block body %}
+
+
+			<div class="tm-welcome-container tm-fixed-header tm-fixed-header-2">
+				<div class="text-center">
+					<h1 class=" text-white ">Create your own competition.</h1>
+				</div>
+            </div>
+
+            <div id="tm-fixed-header-bg"></div> <!-- Header image -->
+		</div>
+
+		<!-- Page content -->
+		<main>
+			<div class="container-fluid px-0">
+
+				<div class="mx-auto tm-content-container">
+                      {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+
+                                    {% for message in messages %}
+
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>Success!</strong> {{ message }}
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    {% endfor %}
+
+                                  {% endif %}
+                                {% endwith %}
+					<div class="row mt-3 mb-5 pb-3">
+						<div class="col-12">
+							<div class="mx-auto tm-about-text-container px-3 text-center">
+								<h2 class="tm-page-title mb-4 tm-text-primary">Create competition</h2>
+
+							</div>
+						</div>
+					</div>
+				</div>
+                 <div class="mx-auto pb-3 tm-about-text-container px-3">
+                      <form id="contact-form" action="/create_comp" method="POST" class="tm-contact-form" enctype='multipart/form-data'>
+                        <div class="row">
+                            <div class="col-lg-6 mb-5">
+
+                                  <div class="form-group">
+                                    <input type="text" name="title" class="form-control rounded-0" placeholder="Title" required />
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" name="type" class="form-control rounded-0" placeholder="Type" required />
+                                  </div>
+                                 <div class="form-group">
+                                    <input type="date" name="limit_date" class="form-control rounded-0" min="2022-06-20" placeholder="Limit Date" required />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <textarea rows="8" name="desc" class="form-control rounded-0" placeholder="Description" required></textarea>
+                                  </div>
+
+
+
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-form-label-lg"> Cover photo</label> <br>
+                                    <input type="file" name="media" id="imgupload" style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px;cursor: pointer;" onchange="previewPicture(this)" placeholder="Image"  autocomplete="off" required />
+                                    <div class="text-center mt-4">
+                                     <img id="si" style="display: none" height="350px"width="400px" src="#" class="rounded" alt="your image" />
+                                </div>
+                                  </div>
+                                 <div class="form-group mb-5">
+                                    <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Submit</span></button>
+                                  </div>
+                            </div>
+                        </div>
+                     </form>
+                      <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+                    </div>
+
+<script type="text/javascript" >
+  imgupload.onchange = evt => {
+  const [file] = imgupload.files
+  if (file) {
+    si.src = URL.createObjectURL(file)
+    si.removeAttribute("style");
+  }
+}
+</script>
+
+				<div class="parallax-window" data-parallax="scroll" data-image-src="img/about-3.jpg"></div>
+			</div>
+		</main>
+{% endblock %}

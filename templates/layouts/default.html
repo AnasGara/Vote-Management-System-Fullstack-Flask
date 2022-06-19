@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Vote.Ly - Vote for the best</title>
+     <link rel="icon" href="/static/admin/img/favicon-32x32.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css')}}"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-video-catalog.css')}}">
+
+
+
+</head>
+<body>
+{% include 'partials/_nav.html' %}
+<div class="tm-page-wrap mx-auto">
+		<div class="position-relative">
+    {% block body %}{% endblock %}
+        <div class="container-fluid tm-content-container mx-auto pt-4">
+			<!-- Subscribe form and footer links -->
+            <div class="row pt-3">
+                <div class="col-xl-6 col-lg-12 mb-4">
+                    <div class="tm-bg-gray p-5 h-100">
+                        <h3 class="tm-text-primary mb-3">Do you want to get our latest updates?</h3>
+                        <p class="mb-5">Please subscribe our newsletter for upcoming new videos and latest information about our
+                            work. Thank you.</p>
+                        <form action="" method="GET" class="tm-subscribe-form">
+                            <input type="text" name="email" placeholder="Your Email..." required>
+                            <button type="submit" class="btn rounded-0 btn-primary tm-btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray">
+                        <h3 class="tm-text-primary mb-4">Contact Us</h3>
+                        <ul class="list-unstyled tm-footer-links">
+                            <li><a href="#">Contact@vote.li</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Messenger</a></li>
+                            <li><a href="#">Whatsapp</a></li>
+                            <li><a href="#">twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray h-100">
+                        <h3 class="tm-text-primary mb-4">Our Pages</h3>
+                        <ul class="list-unstyled tm-footer-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">My competitions</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- row -->
+
+            <footer class="row pt-5">
+                <div class="col-12">
+                    <p class="text-right">Made with love by Aymen Jlassi and Anas Gara</p>
+                </div>
+            </footer>
+		</div>
+        </div>
+
+</div>
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/parallax.min.js')}}"></script>
+</body>
+</html>

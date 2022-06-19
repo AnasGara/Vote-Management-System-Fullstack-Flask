@@ -1,0 +1,9 @@
+requirement:
+-sqlalchemy
+-flask-mail
+-configure data base
+-configure flask mail
+  Important:
+ dont close competition with -3 users 
+
+enjoy

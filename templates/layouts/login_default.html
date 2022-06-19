@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote.Ly - Vote for the best</title>
+     <link rel="icon" href="/static/admin/img/favicon-32x32.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css')}}"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-video-catalog.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+</head>
+<body>
+{% include 'partials/login_nav.html' %}
+  {% block body %}{% endblock %}
+ <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/parallax.min.js')}}"></script>
+</body>
+</html>

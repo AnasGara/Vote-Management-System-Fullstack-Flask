@@ -1,0 +1,41 @@
+
+{% extends 'layouts/login_default.html' %}
+{% block body %}
+<!-- partial:index.partial.html -->
+<div id="bg"></div>
+{#                  {% with messages = get_flashed_messages() %}#}
+{#          {% if messages %}#}
+{#            <ul>#}
+{#            {% for message in messages %}#}
+{#              <li>{{ message }}</li>#}
+{#            {% endfor %}#}
+{#            </ul>#}
+{#          {% endif %}#}
+{#        {% endwith %}#}
+<form method="POST" style="margin-top: 100px">
+  <div class="form-field user">
+    <input type="text" placeholder="First name" name="first_name" required/>
+  </div>
+
+  <div class="form-field last">
+    <input type="text" placeholder="Last name" name="last_name" required/>
+  </div>
+
+     <div class="form-field email">
+    <input type="email" placeholder="Email" name="email" required/>
+  </div>
+
+  <div class="form-field password">
+    <input type="password" placeholder="Password" name="password" required/>
+  </div>
+    <div class="form-field phone">
+    <input type="text" placeholder="Phone" name="phone" required/>
+  </div>
+  
+  <div class="form-field">
+    <button class="btn text-center" type="submit">Save</button>
+
+  </div>
+</form>
+<!-- partial -->
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends 'layouts/default.html' %}
+{% block body %}
+
+
+
+            <div class="tm-welcome-container text-center text-white">
+                <div class="tm-welcome-container-inner">
+
+               <img src="/static/admin/img/logoEntet.png" height="250px" />
+                    <p class="tm-welcome-text mb-5 text-white">Create and manage your contest</p>
+
+                    {% if g.user %}
+                    <a href="#content" class="btn tm-btn-animate tm-btn-cta tm-icon-down">
+                        <span>Welcome</span>
+                    </a>
+                     {% else %}
+                         <a href="/login" class="btn tm-btn-animate tm-btn-cta tm-icon-down">
+                        <span>Join Us</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div id="tm-video-container">
+                <video autoplay muted loop id="tm-video">
+                    <!-- <source src="video/sunset-timelapse-video.mp4" type="video/mp4"> -->
+                        <source src="/static/video/wheat-field.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <i id="tm-video-control-button" class="fas fa-pause"></i>
+        </div>
+
+        <div class="container-fluid">
+            <div id="content" class="mx-auto tm-content-container">
+                <main>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-page-title mb-4">Our Competition Catalog</h2>
+                            <div class="tm-categories-container mb-5">
+                                <h3 class="tm-text-primary tm-categories-text">Categories:</h3>
+                                <ul class="nav tm-category-list">
+                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link active">All</a></li>
+                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Artistic</a></li>
+                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Sport</a></li>
+                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Technological</a></li>
+                                    <li class="nav-item tm-category-item"><a href="#" class="nav-link tm-category-link">Other</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row tm-catalog-item-list">
+                         {% for comp in comp_list.items %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
+                            <div class="position-relative tm-thumbnail-container">
+                                <img src="/static/uploads/img/{{ comp.media }}" alt="Image" class="img-fluid tm-catalog-item-img">
+                                <a href="/competition/{{ comp.id }}" class="position-absolute tm-img-overlay">
+                                    <i class="fas fa-play tm-overlay-icon"></i>
+                                </a>
+                            </div>
+                            <div class="p-4 tm-bg-gray tm-catalog-item-description">
+                                <h3 class="tm-text-primary mb-3 tm-catalog-item-title">{{ comp.title}}</h3>
+                                <p class="tm-catalog-item-text">{{ comp.desc}}.
+                                    Categories <span class="tm-text-secondary">do not need</span> any JS.
+                                    They are just separated HTML pages. Paging is at the bottom to extend the list as long as you want.
+                                    This can be a large catalog.
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+
+
+
+
+                    <!-- Catalog Paging Buttons -->
+                    <div style="justify-content: center">
+                        <ul class="nav tm-paging-links">
+                            <li class="nav-item"><a href="{{ url_for('home', page=comp_list.prev_num) }}" class="nav-link tm-paging-link {% if comp_list.page == 1 %}disabled{% endif %}"> &laquo; </a></li>
+                        {% for page_num in comp_list.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                    {% if page_num %}
+                          {% if comp_list.page == page_num %}
+                            <li class="nav-item active"><a href="{{ url_for('home', page=page_num) }}" class="nav-link tm-paging-link">{{ page_num }}</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{{ url_for('home', page=page_num) }}" class="nav-link tm-paging-link">{{ page_num }}</a></li>
+                         {% endif %}
+                            {% else %}
+                                <span style="font-size: 40px;margin-right: 10px">..</span>
+                            {% endif %}
+                        {% endfor %}
+                            <li class="nav-item"><a href="{{ url_for('home', page=comp_list.next_num) }}" class="nav-link tm-paging-link {% if comp_list.page == comp_list.pages %}disabled{% endif %}"> &raquo;</a></li>
+                        </ul>
+                    </div>
+                </main>
+             </div>
+         </div>
+
+                <!-- Subscribe form and footer links -->
+                <!-- tm-content-container -->
+         <!-- .tm-page-wrap -->
+
+
+    <script>
+
+
+        {#const move = document.getElementById("content").scrollIntoView({behavior: 'smooth'})#}
+
+
+
+        function setVideoSize() {
+            const vidWidth = 1920;
+            const vidHeight = 1080;
+            let windowWidth = window.innerWidth;
+            let newVidWidth = windowWidth;
+            let newVidHeight = windowWidth * vidHeight / vidWidth;
+            let marginLeft = 0;
+            let marginTop = 0;
+
+            if (newVidHeight < 500) {
+                newVidHeight = 500;
+                newVidWidth = newVidHeight * vidWidth / vidHeight;
+            }
+
+            if(newVidWidth > windowWidth) {
+                marginLeft = -((newVidWidth - windowWidth) / 2);
+            }
+
+            if(newVidHeight > 720) {
+                marginTop = -((newVidHeight - $('#tm-video-container').height()) / 2);
+            }
+
+            const tmVideo = $('#tm-video');
+
+            tmVideo.css('width', newVidWidth);
+            tmVideo.css('height', newVidHeight);
+            tmVideo.css('margin-left', marginLeft);
+            tmVideo.css('margin-top', marginTop);
+        }
+
+        $(document).ready(function () {
+            /************** Video background *********/
+
+            setVideoSize();
+
+            // Set video background size based on window size
+            let timeout;
+            window.onresize = function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(setVideoSize, 100);
+            };
+
+            // Play/Pause button for video background
+            const btn = $("#tm-video-control-button");
+
+            btn.on("click", function (e) {
+                const video = document.getElementById("tm-video");
+                $(this).removeClass();
+
+                if (video.paused) {
+                    video.play();
+                    $(this).addClass("fas fa-pause");
+                } else {
+                    video.pause();
+                    $(this).addClass("fas fa-play");
+                }
+            });
+        })
+    </script>
+
+{% endblock %}
